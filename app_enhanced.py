@@ -62,18 +62,22 @@ st.markdown("""
         border-radius: 8px;
         border-left: 4px solid #667eea;
         margin: 0.5rem 0;
+        color: #1f2937;
     }
     .chat-message {
         padding: 1rem;
         border-radius: 8px;
         margin: 0.5rem 0;
+        color: #1f2937;
     }
     .user-message {
         background-color: #e0e7ff;
         text-align: right;
+        color: #1e40af;
     }
     .ai-message {
         background-color: #f3f4f6;
+        color: #374151;
     }
     .feature-card {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
