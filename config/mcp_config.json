@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "yfinance": {
+      "command": "python",
+      "args": ["-m", "yfinance"],
+      "env": {}
+    },
+    "alpaca": {
+      "command": "uvx",
+      "args": ["alpaca-mcp-server", "serve"],
+      "env": {
+        "ALPACA_API_KEY": "${ALPACA_API_KEY}",
+        "ALPACA_SECRET_KEY": "${ALPACA_SECRET_KEY}",
+        "ALPACA_PAPER_TRADE": "True"
+      }
+    }
+  }
+}

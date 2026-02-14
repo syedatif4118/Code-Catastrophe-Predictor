@@ -1,0 +1,7 @@
+{
+  "max_trade_value": 1000,
+  "max_position_percent": 5,
+  "max_daily_trades": 20,
+  "max_daily_loss": 5000,
+  "allowed_symbols": ["AAPL", "TSLA", "GOOGL", "MSFT", "AMZN"]
+}
