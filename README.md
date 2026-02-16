@@ -4,7 +4,6 @@
 > Because the worst bugs are the ones you didn't think to test for.
 
 [![Demo](https://img.shields.io/badge/Demo-Live-brightgreen)]()
-[![License](https://img.shields.io/badge/License-MIT-blue)]()
 [![Claude](https://img.shields.io/badge/Claude-Opus%204.6-purple)]()
 
 ---
