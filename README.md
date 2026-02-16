@@ -234,11 +234,6 @@ Built with Claude Sonnet 4.5 during the Anthropic Claude Code Hackathon 2026.
 
 For questions or issues, open a GitHub issue.
 
----
-
-## 📜 License
-
-MIT License - Use freely, cite if you find it useful.
 
 ---
 
