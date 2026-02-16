@@ -1,6 +1,57 @@
 # Ignore sensitive files
 .env
+.env.local
+
+# Python
 .venv/
+venv/
+env/
+ENV/
 __pycache__/
 *.pyc
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Logs
 logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Test results and debug files
+*_results.json
+*_report.json
+debug_*.txt
+stress_test_*.json
+test_momentum_results.json
+catastrophe_prediction_results.json
+full_stress_test_report.json
+
+# Video production (local only)
+remotion-repo/
+catastrophe-intro/
+*.mp4
+*.mov
+*.avi
+
+# Demo video scripts (already have the video)
+AI_VIDEO_INTRO.md
+VOICEOVER_3MIN.md
+VIDEO_DEMO_SCRIPT.md
+
+# Internal process docs (not needed for users)
+FINAL_SUBMISSION_CHECKLIST.md
+IMPROVEMENTS_COMPLETE.md
+PAPER_MONEY_GUIDE.md
+REALWORLD_TEST_GUIDE.md
+TELEGRAM_FIX.md

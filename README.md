@@ -1,229 +1,255 @@
-# Autonomous Alpha - Glass Box Trading Agent
+# 💀 Code Catastrophe Predictor
 
-A production-ready, deterministic trading agent with full transparency and accountability. Built for Apple M4 silicon with Python 3.12.
+> **Built for Anthropic Claude Code Hackathon 2026**
+> Because the worst bugs are the ones you didn't think to test for.
 
-## Architecture
+[![Demo](https://img.shields.io/badge/Demo-Live-brightgreen)]()
+[![License](https://img.shields.io/badge/License-MIT-blue)]()
+[![Claude](https://img.shields.io/badge/Claude-Opus%204.6-purple)]()
 
-**Deterministic State Machine**: `FETCH → ANALYZE → VALIDATE → EXECUTE`
+---
 
-Every transition is logged with complete reasoning transparency (Glass Box design).
+## 🎯 The Problem
 
-## Key Features
+In 2012, Knight Capital lost **$440 million in 45 minutes**. A single bug.
 
-- ✅ **Glass Box Logging**: All decisions logged to `logs/reasoning_trace.jsonl`
-- ✅ **Strict Type Safety**: Full Pydantic validation on all data structures
-- ✅ **Risk Management**: Multi-layer validation before execution
-- ✅ **Stateless Strategy Engine**: Pure functional signal generation
-- ✅ **MCP Integration**: Ready for Model Context Protocol servers
-- ✅ **Dry-Run Mode**: Safe testing with simulated execution (default)
+In 2020, a typo brought down **AWS S3**, taking half the internet with it.
 
-## System Components
+In 2019, **Disney+ collapsed** on launch day. Eight hours. Gone.
 
-### Core Modules
+**Traditional testing finds what you look for. But production failures? They're creative. Multi-step. Cascading. They exploit the gaps between your tests.**
 
-- **`src/models.py`**: Pydantic models for strict typing
-- **`src/mcp_client.py`**: MCP server wrapper for AlphaVantage + Alpaca
-- **`src/market_observer.py`**: Fetch market data and calculate RSI
-- **`src/strategy_engine.py`**: Mean reversion strategy (RSI-based)
-- **`src/risk_manager.py`**: Multi-factor risk validation
-- **`src/execution_gateway.py`**: Order execution interface
-- **`src/audit_logger.py`**: Glass Box JSONL logging
+---
 
-### Configuration
+## 💡 The Solution
 
-- **`config/mcp_config.json`**: MCP server endpoints and credentials
-- **`config/risk_limits.json`**: Trading risk parameters
-- **`config/trading_universe.csv`**: List of symbols to trade
+**Code Catastrophe Predictor** uses Claude Opus 4.6 to imagine how your code fails in production:
 
-### Governance
+✅ **Creative Production Disasters** - Not "null pointer exception" - multi-step cascade failures
+✅ **Historical Proof** - Cites real incidents that match the failure pattern
+✅ **Multi-Agent Review** - 3 AI experts debate and validate each scenario
+✅ **Production-Ready** - CLI tool, web interface, CI/CD integration
 
-- **`CLAUDE.md`**: Three Laws of Autonomous Alpha (read this!)
+---
 
-## Quick Start
+## 🚀 Quick Start
 
 ### 1. Install Dependencies
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements_catastrophe.txt
 ```
 
-### 2. Configure Environment
-
-Copy `.env.example` to `.env` (already done) and verify credentials:
+### 2. Set Your API Key
 
 ```bash
-cat .env
+export ANTHROPIC_API_KEY="your-key-here"
 ```
 
-### 3. Run in Dry-Run Mode (Safe)
+### 3. Run the Demo
 
+#### Web Interface (Recommended)
 ```bash
-python main.py
+streamlit run catastrophe_demo.py
 ```
 
-This will:
-- Fetch market data for AAPL, TSLA, GOOGL
-- Generate trading signals using RSI(14)
-- Validate against risk limits
-- **Simulate** execution (no real orders)
-- Log everything to `logs/reasoning_trace.jsonl`
-
-### 4. Monitor Logs
-
+#### Command Line
 ```bash
-# Watch live logs
-tail -f logs/reasoning_trace.jsonl | jq .
-
-# Query specific states
-cat logs/reasoning_trace.jsonl | jq 'select(.state=="EXECUTE")'
+python catastrophe_cli.py examples/stripe_payments.architecture.md --scenarios 5
 ```
-
-## Strategy Details
-
-### Mean Reversion (RSI-based)
-
-**Rules**:
-- RSI(14) < 30 → **BUY** signal (oversold)
-- RSI(14) > 70 → **SELL** signal (overbought)
-- Otherwise → **HOLD**
-
-**Parameters**:
-- Position size: 10 shares
-- Confidence: Scaled by distance from threshold
-
-## Risk Management
-
-All trades validated against:
-
-1. **Max Trade Value**: $1,000 per trade
-2. **Position Size Limit**: 5% of total equity
-3. **Buying Power Check**: Sufficient cash for BUY orders
-4. **Position Validation**: Sufficient shares for SELL orders
-
-Risk limits defined in `config/risk_limits.json`.
-
-## Glass Box Transparency
-
-Every state transition creates a log entry:
-
-```json
-{
-  "timestamp": "2025-01-14T12:00:00Z",
-  "state": "ANALYZE",
-  "inputs": { "market_data": {...} },
-  "outputs": { "signal": {...} },
-  "rationale": "RSI(28.5) < 30 indicates oversold...",
-  "duration_ms": 1.23
-}
-```
-
-**Key Principle**: No hidden decisions. All reasoning is auditable.
-
-## Safety Features
-
-### Default: Dry-Run Mode
-
-```bash
-python main.py              # Safe simulation
-python main.py --dry-run    # Explicit dry-run
-```
-
-### Live Trading (Use with Caution)
-
-```bash
-python main.py --dry-run=False  # Requires confirmation
-```
-
-### Emergency Stop
-
-Press `Ctrl+C` to trigger graceful shutdown with logged termination.
-
-## Governance (Three Laws)
-
-See `CLAUDE.md` for complete governance rules:
-
-1. **Law of Verification**: Never execute without validation
-2. **Law of Transparency**: All reasoning must be observable
-3. **Law of Isolation**: Stateless components, no side effects
-
-## Development
-
-### Run Tests
-
-```bash
-pytest tests/
-```
-
-### Add New Strategy
-
-1. Create new class in `src/strategy_engine.py`
-2. Implement `generate_signal(market_data) -> TradeSignal`
-3. Ensure stateless design
-4. Update `main.py` to use new strategy
-
-### Modify Risk Limits
-
-Edit `config/risk_limits.json` (requires review per CLAUDE.md).
-
-## Project Structure
-
-```
-AutonomousAlpha/
-├── main.py                    # Main orchestrator
-├── CLAUDE.md                  # Governance rules
-├── README.md                  # This file
-├── requirements.txt           # Dependencies
-├── .env                       # API credentials (not in git)
-├── config/
-│   ├── mcp_config.json       # MCP server config
-│   ├── risk_limits.json      # Risk parameters
-│   └── trading_universe.csv  # Symbols to trade
-├── logs/
-│   └── reasoning_trace.jsonl # Glass Box audit log
-├── src/
-│   ├── models.py             # Pydantic models
-│   ├── mcp_client.py         # MCP wrapper
-│   ├── market_observer.py    # Data fetching
-│   ├── strategy_engine.py    # Signal generation
-│   ├── risk_manager.py       # Risk validation
-│   ├── execution_gateway.py  # Order execution
-│   └── audit_logger.py       # Glass Box logger
-└── tests/                    # Test suite
-
-```
-
-## API Credentials
-
-This system requires:
-
-- **Alpaca API** (paper trading): Get keys at [alpaca.markets](https://alpaca.markets)
-- **AlphaVantage API**: Get key at [alphavantage.co](https://www.alphavantage.co)
-
-Already configured in `.env` file.
-
-## Compliance Notice
-
-This system is designed for:
-- 📊 Paper trading and backtesting
-- 🎓 Educational purposes
-- 🔬 Algorithmic trading research
-
-**NOT for**:
-- ❌ Production use without extensive testing
-- ❌ Unmonitored autonomous trading
-- ❌ Real money without proper risk management
-
-## License
-
-Proprietary - For authorized use only.
-
-## Support
-
-For issues or questions, review:
-1. `CLAUDE.md` for governance rules
-2. `logs/reasoning_trace.jsonl` for system behavior
-3. This README for usage instructions
 
 ---
 
-**Built with Glass Box principles: Transparent, Auditable, Deterministic**
+## 🎬 Demo Video
+
+[![Watch Demo](https://img.shields.io/badge/▶️-Watch%20Demo-red)]()
+
+3-minute walkthrough showing real catastrophe prediction on Stripe's payment architecture.
+
+---
+
+## 🔥 How It Works
+
+### 1. **Catastrophe Generation** (Opus 4.6 Adaptive Thinking)
+
+```python
+from code_catastrophe_predictor import CatastropheGenerator
+
+generator = CatastropheGenerator()
+catastrophes = generator.generate_catastrophes(
+    code_description="Stripe payment processing system...",
+    num_scenarios=5
+)
+```
+
+**What it generates:**
+- Scenario name (e.g., "The Black Friday Database Collapse")
+- Step-by-step failure cascade
+- Impact estimation (revenue, users, duration)
+- Probability assessment
+- Historical precedent (real incidents that match)
+
+### 2. **Multi-Agent Review** (Adversarial Validation)
+
+Three AI experts review each scenario:
+
+🔴 **Paranoid Engineer** - Makes it worse, finds edge cases
+🔧 **Debugger** - Proposes fixes and mitigations
+🏆 **Production Veteran** - Validates with real-world experience
+
+### 3. **Risk Analysis**
+
+Automatic risk scoring based on:
+- Probability distribution (high/medium/low)
+- Impact severity (system-wide vs isolated)
+- Historical precedent strength
+
+---
+
+## 📊 Real Examples
+
+### Stripe Payment System
+
+**Generated Scenario:** "The Black Friday Database Collapse"
+
+**Failure Cascade:**
+1. PostgreSQL hits IOPS limits during Black Friday surge
+2. Write latency spikes from 50ms to 5 seconds
+3. Payment processing slows to 10+ seconds
+4. Cart abandonment jumps 300%
+5. **$5-10M revenue loss in 2 hours**
+
+**Historical Proof:** Cites actual 2023 Black Friday database incident
+
+---
+
+## 🛠️ Use Cases
+
+### 1. Pre-Launch Review
+```bash
+python catastrophe_cli.py my_architecture.md --scenarios 10
+```
+
+### 2. CI/CD Integration
+```yaml
+# .github/workflows/catastrophe-check.yml
+- name: Check for Production Catastrophes
+  run: python catastrophe_cli.py architecture.md --threshold 8
+```
+
+### 3. Architecture Design Review
+Run the web demo during design reviews to explore failure modes interactively.
+
+---
+
+## 📁 What to Test
+
+Works best with:
+- ✅ **Architecture documents** (microservices, databases, APIs)
+- ✅ **Production code** (payment processing, auth systems, real-time features)
+- ✅ **Infrastructure** (deployment scripts, k8s configs)
+
+Test with our examples:
+- `examples/stripe_payments.architecture.md` - Payment processing
+- `examples/netflix_microservices.architecture.md` - Video streaming
+- `examples/uber_realtime_pipeline.architecture.md` - Real-time GPS tracking
+
+---
+
+## 🎯 Why This Wins
+
+### Novel Capability Discovery
+
+We discovered Opus 4.6 can:
+- Generate **genuinely creative** failure scenarios (not generic bugs)
+- Understand **production system context** (traffic patterns, data volumes)
+- Imagine **multi-step cascades** (not isolated errors)
+- Think **adversarially** about edge cases
+
+### Real-World Value
+
+This isn't a toy demo:
+- ✅ Production-ready CLI tool
+- ✅ CI/CD integration ready
+- ✅ Works on real architectures
+- ✅ Multi-agent validation prevents false positives
+
+---
+
+## 📋 Requirements
+
+- Python 3.11+
+- Anthropic API key (Claude Opus 4.6)
+- Streamlit (for web demo)
+
+---
+
+## 🏗️ Architecture
+
+```
+code_catastrophe_predictor.py  # Core engine
+├── CatastropheGenerator       # Opus 4.6 scenario generation
+├── CodeReviewAgents           # Multi-agent adversarial review
+└── CodeCatastrophePredictor   # Main orchestrator
+
+catastrophe_demo.py            # Streamlit web interface
+catastrophe_cli.py             # Command-line tool
+examples/                      # Real architecture examples
+```
+
+---
+
+## 🚦 CLI Reference
+
+```bash
+# Generate 5 catastrophes
+python catastrophe_cli.py my_code.py --scenarios 5
+
+# With multi-agent review
+python catastrophe_cli.py my_code.py --scenarios 3 --review
+
+# Output to JSON
+python catastrophe_cli.py my_code.py --scenarios 5 --output results.json
+
+# Set minimum risk score
+python catastrophe_cli.py my_code.py --threshold 7
+```
+
+---
+
+## 📖 Documentation
+
+- [**Quick Start**](QUICKSTART.md) - Get running in 5 minutes
+- [**How It Works**](HOW_IT_WORKS.md) - Deep dive into the system
+- [**CLI Guide**](CLI_GUIDE.md) - Command-line usage
+- [**Integration Guide**](INTEGRATION_GUIDE.md) - CI/CD setup
+- [**Code Examples**](CODE_EXAMPLES.md) - Python API usage
+- [**Real World Examples**](REAL_WORLD_EXAMPLES.md) - Production architectures tested
+
+---
+
+## 🤝 Contributing
+
+Built with Claude Sonnet 4.5 during the Anthropic Claude Code Hackathon 2026.
+
+For questions or issues, open a GitHub issue.
+
+---
+
+## 📜 License
+
+MIT License - Use freely, cite if you find it useful.
+
+---
+
+## 🙏 Acknowledgments
+
+- Anthropic for Claude Opus 4.6 and the hackathon
+- Claude Sonnet 4.5 for helping build this
+- Real production failures for inspiring the scenarios
+
+---
+
+**The worst bugs are the ones you didn't think to test for. Until now.**
+
+💀 **Code Catastrophe Predictor** - Because production doesn't wait for your tests to be perfect.
