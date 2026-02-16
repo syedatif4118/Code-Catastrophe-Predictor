@@ -61,7 +61,7 @@ python catastrophe_cli.py examples/stripe_payments.architecture.md --scenarios 5
 
 ## 🎬 Demo Video
 
-[![Watch Demo](https://img.shields.io/badge/▶️-Watch%20Demo-red)]()
+[![Watch Demo](https://youtu.be/hSk4iBB69iQ//img.shields.io/badge/▶️-Watch%20Demo-red)]()
 
 3-minute walkthrough showing real catastrophe prediction on Stripe's payment architecture.
 
@@ -218,12 +218,7 @@ python catastrophe_cli.py my_code.py --threshold 7
 
 ## 📖 Documentation
 
-- [**Quick Start**](QUICKSTART.md) - Get running in 5 minutes
-- [**How It Works**](HOW_IT_WORKS.md) - Deep dive into the system
-- [**CLI Guide**](CLI_GUIDE.md) - Command-line usage
-- [**Integration Guide**](INTEGRATION_GUIDE.md) - CI/CD setup
-- [**Code Examples**](CODE_EXAMPLES.md) - Python API usage
-- [**Real World Examples**](REAL_WORLD_EXAMPLES.md) - Production architectures tested
+- [**Architercture**](architectutre.md) - Get running in 5 minutes
 
 ---
 
