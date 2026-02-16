@@ -3,8 +3,8 @@
 > **Built for Anthropic Claude Code Hackathon 2026**
 > Because the worst bugs are the ones you didn't think to test for.
 
-[![Demo](https://img.shields.io/badge/Demo-Live-brightgreen)]()
-[![Claude](https://img.shields.io/badge/Claude-Opus%204.6-purple)]()
+[![Demo](https://img.shields.io/badge/Demo-Live-brightgreen)](https://youtu.be/hSk4iBB69iQ)
+[![Claude](https://img.shields.io/badge/Claude-Opus%204.6-purple)](https://www.anthropic.com)
 
 ---
 
@@ -61,7 +61,7 @@ python catastrophe_cli.py examples/stripe_payments.architecture.md --scenarios 5
 
 ## 🎬 Demo Video
 
-[![Watch Demo](https://youtu.be/hSk4iBB69iQ//img.shields.io/badge/▶️-Watch%20Demo-red)]()
+[![Watch Demo](https://img.shields.io/badge/▶️-Watch%20Demo-red)](https://youtu.be/hSk4iBB69iQ)
 
 3-minute walkthrough showing real catastrophe prediction on Stripe's payment architecture.
 
@@ -218,7 +218,7 @@ python catastrophe_cli.py my_code.py --threshold 7
 
 ## 📖 Documentation
 
-- [**Architercture**](architectutre.md) - Get running in 5 minutes
+- [**Architecture**](ARCHITECTURE.md) - Complete system architecture with diagrams
 
 ---
 
